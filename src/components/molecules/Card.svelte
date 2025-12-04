@@ -1,11 +1,12 @@
 <script lang="ts">
 	const {
-		children = null,
 		clickable = false,
 		disabled = false,
+		rounded = true,
 		title = null,
 		description = null,
 		onclick = null,
+		children = null,
 		...rest
 	} = $props();
 
@@ -15,6 +16,7 @@
 <div
 	class="c-Card {rest.class || ''}"
 	{role}
+	class:rounded
 	class:clickable
 	class:disabled
 	onclick={disabled ? null : onclick}
@@ -28,9 +30,7 @@
 	.c-Card {
 		position: relative;
 		overflow: hidden;
-		border-radius: 0.375rem;
 		border: 1px solid;
-		text-align: center;
 		padding: 1rem 2rem;
 		background: linear-gradient(
 			to bottom right,
@@ -44,6 +44,10 @@
 		transition:
 			transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
 			box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+		&.rounded {
+			border-radius: 0.75rem;
+		}
 
 		&.clickable {
 			cursor: pointer;

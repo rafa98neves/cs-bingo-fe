@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Header from '../components/Header.svelte';
+	import Header from '../components/blocks/Header.svelte';
 	import './layout.scss';
 
 	let { children } = $props();
@@ -41,15 +41,8 @@
 		justify-content: center;
 		align-items: center;
 		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
+		a {
+			font-weight: bold;
 		}
 	}
 </style>
