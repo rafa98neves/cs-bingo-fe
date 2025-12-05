@@ -21,7 +21,7 @@ Thank you for your interest in contributing to CS Bingo! This document outlines 
 ## Tech Stack
 
 - **Framework**: SvelteKit 5
-- **Styling**: Tailwind CSS v4 + SCSS
+- **Styling**: Tailwind CSS v4 + CSS
 - **Language**: TypeScript
 - **Package Manager**: npm
 

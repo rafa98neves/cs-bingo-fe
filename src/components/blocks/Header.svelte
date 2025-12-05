@@ -21,7 +21,7 @@
 	</nav>
 </header>
 
-<style lang="scss" scoped>
+<style scoped>
 	nav {
 		display: flex;
 		justify-content: center;

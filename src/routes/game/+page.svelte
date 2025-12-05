@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Card from '../../components/molecules/Card.svelte';
 	import Timer from '../../components/molecules/Timer.svelte';
+	import { Button } from 'flowbite-svelte';
+	import { ArrowRightOutline } from 'flowbite-svelte-icons';
 	import type { GameItem, GamePlayer } from '../../types/interfaces/game';
 	import { gameData } from './game.data';
 
@@ -34,24 +36,35 @@
 
 	<Card class="p-0!">
 		<div
-			class="gap-4 justify-items-between py-2 bg-slate-200 px-4 grid grid-cols-3 items-center border-b-1"
+			class="justify-items-between grid h-22 grid-cols-6 items-center gap-4 border-b-1 bg-slate-300 px-4 py-2"
 		>
-			<Timer class="basis-24" bind:this={timerComp} finish={newRound} />
-			<h3>{currentPlayer.name}</h3>
-			<div class="text-right">
-				<div>Skip</div>
-				<p>{gameData.players.length} remaining</p>
+			<Timer bind:this={timerComp} finish={newRound} />
+			<div class="col-span-4">{currentPlayer.name}</div>
+			<div class="flex flex-col items-end">
+				<div>
+					<Button color="alternative" onclick={newRound} class="border-none">
+						Skip
+						<ArrowRightOutline size="sm" class="me-2 h-4 w-4" />
+					</Button>
+				</div>
+				<div class="text-sm text-slate-400">{gameData.players.length} remaining</div>
 			</div>
 		</div>
 
 		<div class="grid grid-cols-4 grid-rows-4">
 			{#each options as option}
-				<Card clickable onclick={() => onOptionClick(option)} rounded={false} class="border-0!">
-					<div class="text-sm flex h-full flex-col items-center justify-center">
+				<Card
+					clickable
+					onclick={() => onOptionClick(option)}
+					rounded={false}
+					class="border-0! {!!responses[currentPlayer.id] ? 'active' : ''}"
+					disabled={!!responses[currentPlayer.id]}
+				>
+					<div class="flex h-full flex-col items-center justify-center text-sm">
 						{#if option.prefix}
 							<span class="mb-1 block italic">{option.prefix}</span>
 						{/if}
-						<span class="text-xl font-bold align-middle">{option.displayName}</span>
+						<span class="align-middle text-xl font-bold">{option.displayName}</span>
 						{#if option.suffix}
 							<span class="mt-1 block italic">{option.suffix}</span>
 						{/if}
@@ -62,5 +75,8 @@
 	</Card>
 </section>
 
-<style lang="scss" scoped>
+<style scoped>
+	.active {
+		background-color: red !important;
+	}
 </style>

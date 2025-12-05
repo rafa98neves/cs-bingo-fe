@@ -46,13 +46,14 @@
 				disabled={option.disabled}
 				title={option.name}
 				description={option.description}
+				center={true}
 				onclick={onOptionClick(option.id)}
 			/>
 		{/each}
 	</div>
 </section>
 
-<style lang="scss" scoped>
+<style scoped>
 	section {
 		display: flex;
 		flex-direction: column;

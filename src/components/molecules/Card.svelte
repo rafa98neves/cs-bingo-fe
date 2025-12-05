@@ -4,6 +4,7 @@
 		disabled = false,
 		rounded = true,
 		title = null,
+		center = false,
 		description = null,
 		onclick = null,
 		children = null,
@@ -19,6 +20,7 @@
 	class:rounded
 	class:clickable
 	class:disabled
+	class:text-center={center}
 	onclick={disabled ? null : onclick}
 >
 	{#if title}<h3 class="mb-4">{title}</h3>{/if}
@@ -26,7 +28,7 @@
 	{@render children?.()}
 </div>
 
-<style lang="scss" scoped>
+<style scoped>
 	.c-Card {
 		position: relative;
 		overflow: hidden;
@@ -44,25 +46,26 @@
 		transition:
 			transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
 			box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+	}
 
-		&.rounded {
-			border-radius: 0.75rem;
-		}
+	.c-Card.rounded {
+		border-radius: 0.75rem;
+	}
 
-		&.clickable {
-			cursor: pointer;
-			user-select: none;
-			&:hover {
-				transform: translateY(-0.125rem);
-				box-shadow:
-					0 25px 50px -12px rgba(0, 0, 0, 0.25),
-					0 10px 10px -5px rgba(0, 0, 0, 0.1);
-			}
-		}
+	.c-Card.clickable {
+		cursor: pointer;
+		user-select: none;
+	}
 
-		&.disabled {
-			opacity: 0.6;
-			pointer-events: none;
-		}
+	.c-Card.clickable:hover {
+		transform: translateY(-0.125rem);
+		box-shadow:
+			0 25px 50px -12px rgba(0, 0, 0, 0.25),
+			0 10px 10px -5px rgba(0, 0, 0, 0.1);
+	}
+
+	.c-Card.disabled {
+		opacity: 0.6;
+		pointer-events: none;
 	}
 </style>
